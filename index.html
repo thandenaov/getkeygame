@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f4f3f9">
+  <title>Get Key Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f4f3f9;--card:#fff;--text:#101014;--muted:#96959c;--line:#e7e6eb;--soft:#e5e4e9;--accent:#178ee8;--accent2:#5577ff;--shadow:0 9px 25px rgba(35,25,65,.07)}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text)}body{transition:background .3s,color .3s}body.dark{--bg:#07080b;--card:#101114;--text:#fafafa;--muted:#77787f;--line:#34353b;--soft:#111217;--shadow:none}
+    button,a{font:inherit}.page{width:min(100%,690px);min-height:100vh;margin:auto;padding:18px 26px 70px}.statusbar{height:28px;display:flex;align-items:center;justify-content:flex-start;font-size:18px;font-weight:700;padding-left:7px;margin-bottom:18px}.hero{display:grid;grid-template-columns:64px 1fr 48px;align-items:center;gap:17px;max-width:590px;margin:0 auto 34px}.logo{width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 0 20px color-mix(in srgb,var(--accent) 48%,transparent)}h1{font-size:clamp(25px,5.5vw,34px);line-height:1.08;margin:0;font-weight:800;letter-spacing:-.8px}.theme{width:48px;height:48px;border:0;border-radius:50%;background:var(--card);color:var(--text);box-shadow:var(--shadow);font-size:23px;cursor:pointer;place-items:center}
+    .section{max-width:590px;margin:0 auto 29px}.section-head{display:flex;justify-content:space-between;color:var(--muted);font-size:17px;font-weight:800;margin:0 21px 12px;text-transform:uppercase}.progress{height:8px;border-radius:99px;background:#d8d7dc;overflow:hidden;margin-bottom:16px}.dark .progress{background:#44454b}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.3s;border-radius:inherit}.task-card{background:var(--card);border-radius:23px;padding-left:22px;box-shadow:var(--shadow);overflow:hidden}.task{min-height:85px;display:grid;grid-template-columns:50px 1fr 20px;gap:17px;align-items:center;text-decoration:none;color:var(--text);border-bottom:1px solid var(--line);padding:13px 21px 13px 0}.task:last-child{border-bottom:0}.task-icon{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;overflow:hidden;background:#555}.task-icon img{width:100%;height:100%;object-fit:cover}.task-title{font-size:clamp(17px,4.4vw,23px);font-weight:700;line-height:1.18}.arrow{font-size:34px;color:#b8b8ba}.task.done{opacity:.58}.task.done .arrow{font-size:0}.task.done .arrow:before{content:'✓';font-size:25px;color:#35b66d}
+    .section-title{color:var(--muted);font-size:18px;font-weight:800;margin:0 21px 14px;text-transform:uppercase}.unlock-list{display:grid;gap:14px}.unlock{width:100%;min-height:70px;border:0;border-radius:20px;background:var(--soft);color:#99989e;font-size:clamp(16px,4.2vw,21px);font-weight:700;padding:15px 19px;cursor:not-allowed;display:flex;align-items:center;justify-content:center;gap:8px}.unlock.ready{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;cursor:pointer;box-shadow:0 10px 22px color-mix(in srgb,var(--accent) 25%,transparent)}.guide-section{max-width:590px;margin:28px auto 0}.guides{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 23px}.guides a{color:var(--accent);text-decoration:none;font-size:clamp(15px,3.8vw,19px);font-weight:700}.guides a:before{content:'▶';display:inline-grid;place-items:center;width:21px;height:21px;border-radius:50%;background:var(--accent);color:#fff;font-size:9px;margin-right:7px;vertical-align:2px}.toast{position:fixed;left:50%;bottom:30px;translate:-50% 18px;background:#111;color:#fff;padding:12px 17px;border-radius:13px;opacity:0;pointer-events:none;transition:.22s;z-index:99;font-weight:600;white-space:nowrap;max-width:90vw}.toast.show{opacity:1;translate:-50% 0}.empty{padding:25px;text-align:center;color:var(--muted);font-weight:700}.empty.standalone{padding:18px}
+    @media(max-width:520px){.page{padding:15px 26px 62px}.statusbar{font-size:17px;margin-bottom:15px}.hero{grid-template-columns:58px 1fr 45px;gap:15px;margin-bottom:31px}.logo{width:58px;height:58px;border-radius:15px}.theme{width:45px;height:45px}.section{margin-bottom:27px}.task-card{padding-left:21px}.task{min-height:82px;grid-template-columns:48px 1fr 16px;gap:16px;padding-right:18px}.task-icon{width:48px;height:48px}.unlock{min-height:68px}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <div class="statusbar" id="liveClock">--:--</div>
+  <header class="hero"><img class="logo" id="logo" alt="Logo"><h1 id="title"></h1><button class="theme" id="themeBtn" aria-label="Đổi giao diện">☾</button></header>
+  <section class="section"><div class="section-head"><span id="taskHeading">Nhiệm vụ</span><span id="count">0 / 0</span></div><div class="progress"><span id="progress"></span></div><div class="task-card" id="taskList"></div></section>
+  <section class="section"><div class="section-title" id="unlockHeading">Mở khoá key</div><div class="unlock-list" id="unlockList"></div></section>
+  <section class="guide-section"><div class="section-title" id="guideHeading">Hướng dẫn vượt link</div><nav class="guides" id="guides"></nav></section>
+</main>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body></html>
