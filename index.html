@@ -11,7 +11,7 @@
 </style>
 </head><body>
 <div id="siteView"><main class="page"><div class="clock" id="liveClock">--:--</div><header class="hero"><img class="logo" id="logo" alt="Logo"><h1 id="title"></h1><button class="theme" id="themeBtn">☾</button></header><section class="section"><div class="head"><span id="taskHeading">Nhiệm vụ</span><span id="count">0 / 0</span></div><div class="progress"><i id="progress"></i></div><div class="task-card" id="taskList"></div></section><section class="section"><div class="section-title" id="unlockHeading">Mở khoá key</div><div class="unlock-list" id="unlockList"></div></section><section class="section"><div class="section-title" id="guideHeading">Hướng dẫn vượt link</div><nav class="guides" id="guides"></nav></section></main></div>
-<div id="adminView" class="hidden"><div class="login" id="login"><form class="login-box" id="loginForm"><h2>Đăng nhập Admin</h2><input id="password" type="password" placeholder="Mật khẩu"><button class="btn primary" style="width:100%">Đăng nhập</button></form></div><div class="admin-wrap hidden" id="adminPanel"><div class="admin-top"><h1>Quản trị Get Key</h1><div class="actions"><button class="btn" id="viewSite">Xem web</button><button class="btn" id="exportBtn">Xuất cấu hình</button><button class="btn" id="importBtn">Nhập cấu hình</button><button class="btn danger" id="resetConfig">Khôi phục</button><button class="btn" id="logoutBtn">Đăng xuất</button><button class="btn primary" id="saveBtn">Lưu thay đổi</button></div></div><div class="layout"><aside class="card"><h2>Danh sách trang</h2><div class="pages" id="pageList"></div><button class="btn primary" id="addPage" style="width:100%;margin-top:10px">+ Thêm trang</button><p class="note">Bấm Lưu để giữ toàn bộ thay đổi trên trình duyệt này, không tải file. Chỉ khi bấm Xuất cấu hình mới tải config.js để sao lưu hoặc upload lên GitHub.</p></aside><main class="content-grid"><section class="card"><h2>Trang đang chọn</h2><div class="fields"><div class="field full"><label>Tên trang trong Admin</label><input id="p_name"></div><div class="field"><label>Slug đường dẫn</label><input id="p_slug"></div><div class="field"><label>Tiêu đề lớn</label><input id="p_title"></div><div class="field full"><label>Tiêu đề tab</label><input id="p_browserTitle"></div><div class="field full"><label>URL logo</label><input id="p_logo"></div><div class="field full"><button class="btn" id="logoUploadBtn">Tải logo từ máy</button><input id="logoFile" type="file" accept="image/*" hidden></div></div></section><section class="card"><h2>Giao diện dùng chung</h2><div class="fields"><div class="field"><label>Tiêu đề nhiệm vụ</label><input id="a_taskHeading"></div><div class="field"><label>Tiêu đề mở khoá</label><input id="a_unlockHeading"></div><div class="field full"><label>Tiêu đề hướng dẫn</label><input id="a_guideHeading"></div><div class="field"><label>Màu chính</label><input id="a_accent" type="color"></div><div class="field"><label>Màu phụ</label><input id="a_accent2" type="color"></div><label class="check"><input id="a_showClock" type="checkbox"> Hiện đồng hồ</label><label class="check"><input id="a_autoTheme" type="checkbox"> Tự đổi sáng/tối</label><div class="field"><label>Giờ sáng</label><input id="a_lightHour" type="number" min="0" max="23"></div><div class="field"><label>Giờ tối</label><input id="a_darkHour" type="number" min="0" max="23"></div><div class="field full"><label>Mật khẩu mới</label><input id="a_newPassword" type="password" placeholder="Để trống nếu không đổi"></div></div></section><section class="card full"><h2>Nhiệm vụ dùng chung</h2><div class="list" id="a_tasks"></div><button class="btn" data-add="task">+ Thêm nhiệm vụ</button></section><section class="card full"><h2>Link mở khoá của trang này</h2><div class="list" id="a_unlocks"></div><button class="btn" data-add="unlock">+ Thêm nút mở khoá</button></section><section class="card full"><h2>Hướng dẫn dùng chung</h2><div class="list" id="a_guides"></div><button class="btn" data-add="guide">+ Thêm hướng dẫn</button></section></main></div></div><input type="file" id="fileInput" accept=".js,.json,application/javascript,application/json,text/javascript" hidden></div><div class="toast" id="toast"></div>
+<div id="adminView" class="hidden"><div class="login" id="login"><form class="login-box" id="loginForm"><h2>Đăng nhập Admin</h2><input id="password" type="password" placeholder="Mật khẩu"><button class="btn primary" style="width:100%">Đăng nhập</button></form></div><div class="admin-wrap hidden" id="adminPanel"><div class="admin-top"><h1>Quản trị Get Key</h1><div class="actions"><button class="btn" id="viewSite">Xem web</button><button class="btn danger" id="resetConfig">Khôi phục</button><button class="btn" id="logoutBtn">Đăng xuất</button><button class="btn primary" id="saveBtn">Lưu thay đổi</button></div></div><div class="layout"><aside class="card"><h2>Danh sách trang</h2><div class="pages" id="pageList"></div><button class="btn primary" id="addPage" style="width:100%;margin-top:10px">+ Thêm trang</button><p class="note">Bấm Lưu thay đổi, nhập GitHub Token khi được hỏi. Dữ liệu sẽ cập nhật công khai cho tất cả người truy cập.</p></aside><main class="content-grid"><section class="card"><h2>Trang đang chọn</h2><div class="fields"><div class="field full"><label>Tên trang trong Admin</label><input id="p_name"></div><div class="field"><label>Slug đường dẫn</label><input id="p_slug"></div><div class="field"><label>Tiêu đề lớn</label><input id="p_title"></div><div class="field full"><label>Tiêu đề tab</label><input id="p_browserTitle"></div><div class="field full"><label>URL logo</label><input id="p_logo"></div><div class="field full"><button class="btn" id="logoUploadBtn">Tải logo từ máy</button><input id="logoFile" type="file" accept="image/*" hidden></div></div></section><section class="card"><h2>Giao diện dùng chung</h2><div class="fields"><div class="field"><label>Tiêu đề nhiệm vụ</label><input id="a_taskHeading"></div><div class="field"><label>Tiêu đề mở khoá</label><input id="a_unlockHeading"></div><div class="field full"><label>Tiêu đề hướng dẫn</label><input id="a_guideHeading"></div><div class="field"><label>Màu chính</label><input id="a_accent" type="color"></div><div class="field"><label>Màu phụ</label><input id="a_accent2" type="color"></div><label class="check"><input id="a_showClock" type="checkbox"> Hiện đồng hồ</label><label class="check"><input id="a_autoTheme" type="checkbox"> Tự đổi sáng/tối</label><div class="field"><label>Giờ sáng</label><input id="a_lightHour" type="number" min="0" max="23"></div><div class="field"><label>Giờ tối</label><input id="a_darkHour" type="number" min="0" max="23"></div><div class="field full"><label>Mật khẩu mới</label><input id="a_newPassword" type="password" placeholder="Để trống nếu không đổi"></div></div></section><section class="card full"><h2>Nhiệm vụ dùng chung</h2><div class="list" id="a_tasks"></div><button class="btn" data-add="task">+ Thêm nhiệm vụ</button></section><section class="card full"><h2>Link mở khoá của trang này</h2><div class="list" id="a_unlocks"></div><button class="btn" data-add="unlock">+ Thêm nút mở khoá</button></section><section class="card full"><h2>Hướng dẫn dùng chung</h2><div class="list" id="a_guides"></div><button class="btn" data-add="guide">+ Thêm hướng dẫn</button></section></main></div></div></div><div class="toast" id="toast"></div>
 <script>
 window.GETKEY_CONFIG = {
   "common": {
@@ -90,7 +90,7 @@ window.GETKEY_CONFIG = {
 };
 
 </script>
-<script>document.write('<script src="config.js?v='+Date.now()+'" onerror="console.warn(\'config.js không tải được, đang dùng cấu hình dự phòng trong index.html\')"><\/script>')</script>
+<script>const __isAdminPath=/\/admin\/?(?:index\.html)?$/.test(location.pathname);document.write('<script src="'+(__isAdminPath?'../config.js':'config.js')+'?v='+Date.now()+'" onerror="console.warn(\'config.js không tải được, đang dùng cấu hình dự phòng trong index.html\')"><\/script>')</script>
 <script>
 const STORAGE_KEY='getkey_multi_v4',PROGRESS_KEY='getkey_multi_progress_v4';
 const DEFAULT={common:{taskHeading:'Nhiệm vụ',unlockHeading:'Mở khoá key',guideHeading:'Hướng dẫn vượt link',accent:'#168ee8',accent2:'#5577ff',showClock:true,autoTheme:true,lightHour:6,darkHour:18,tasks:[{id:'discord',title:'Tham Gia Discord',icon:'https://cdn.simpleicons.org/discord/ffffff',bg:'#5865F2',url:'https://discord.com/'},{id:'tiktok',title:'Follow TikTok',icon:'https://cdn.simpleicons.org/tiktok/ffffff',bg:'#000000',url:'https://www.tiktok.com/'},{id:'zalo',title:'Vào nhóm Zalo',icon:'https://cdn.simpleicons.org/zalo/ffffff',bg:'#0a68ff',url:'https://zalo.me/'},{id:'youtube',title:'Đăng Ký Kênh YouTube',icon:'https://cdn.simpleicons.org/youtube/ffffff',bg:'#ff3434',url:'https://www.youtube.com/'}],guides:[{title:'Hướng dẫn vượt Link Chính',url:'#'},{title:'HD Vượt Link Phụ',url:'#'}]},pages:[{id:'p1',name:'Liên Quân iOS',slug:'lqm-ios',title:'Get Key LQM iOS',browserTitle:'Get Key LQM iOS',logo:'https://play-lh.googleusercontent.com/Vcxb9Q-GG4Md6c9uCMCRnDlx8DUpiXgAnO7HXkSQTJKjV1MxLr5hZZVCf6nSfX8OsAc',unlocks:[{title:'Mở khoá Link Chính',url:'#'},{title:'Link Phụ',url:'#'}]},{id:'p2',name:'Free Fire iOS',slug:'ff-ios',title:'Get Key Free Fire iOS',browserTitle:'Get Key Free Fire iOS',logo:'https://cdn-icons-png.flaticon.com/512/1041/1041916.png',unlocks:[{title:'Mở khoá Link Chính FF',url:'#'}]}]};
@@ -98,8 +98,8 @@ const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>'"]/g,c=>
 const clone=x=>JSON.parse(JSON.stringify(x)); function safeUrl(u){return /^(https?:\/\/|tg:|mailto:|zalo:)/i.test(u||'')?u:'#'}
 const CONFIG_STORAGE_KEY='getkey_admin_saved_config_v1';
 function load(){
-  try{const saved=JSON.parse(localStorage.getItem(CONFIG_STORAGE_KEY)||'null');if(saved&&saved.common&&Array.isArray(saved.pages))return clone(saved)}catch{}
   try{const x=window.GETKEY_CONFIG;if(x&&x.common&&Array.isArray(x.pages))return clone(x)}catch{}
+  try{const saved=JSON.parse(localStorage.getItem(CONFIG_STORAGE_KEY)||'null');if(saved&&saved.common&&Array.isArray(saved.pages))return clone(saved)}catch{}
   return clone(DEFAULT)
 }
 let cfg=load(),activePageId=cfg.pages[0]?.id||'',completed=new Set();
@@ -116,7 +116,7 @@ function setAdminUnlocked(unlocked){
   $('#adminPanel').classList.toggle('hidden',!unlocked);
 }
 function showAdmin(){
-  const admin=new URLSearchParams(location.search).has('admin');
+  const admin=/\/admin\/?(?:index\.html)?$/.test(location.pathname);
   $('#siteView').classList.toggle('hidden',admin);
   $('#adminView').classList.toggle('hidden',!admin);
   if(admin){
@@ -208,30 +208,48 @@ function parseConfigText(text){
   if(!match)throw new Error('format');
   return JSON.parse(match[1]);
 }
-$('#saveBtn').onclick=()=>{
+const GITHUB_TOKEN_KEY='getkey_github_token_v1';
+function githubTarget(){
+  const owner=location.hostname.split('.')[0];
+  const parts=location.pathname.split('/').filter(Boolean);
+  const ai=parts.indexOf('admin');const repo=ai>0?parts[0]:owner+'.github.io';
+  return {owner,repo,path:'config.js'};
+}
+function encodeBase64Unicode(text){
+  const bytes=new TextEncoder().encode(text);let binary='';
+  bytes.forEach(b=>binary+=String.fromCharCode(b));return btoa(binary);
+}
+async function savePublicConfig(snapshot){
+  let token=localStorage.getItem(GITHUB_TOKEN_KEY)||'';
+  if(!token){token=(prompt('Dán GitHub Token có quyền Contents: Read and write')||'').trim();if(!token)throw new Error('missing-token');localStorage.setItem(GITHUB_TOKEN_KEY,token)}
+  const {owner,repo,path}=githubTarget();
+  const api=`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${path}`;
+  const headers={'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2022-11-28'};
+  const current=await fetch(api+'?t='+Date.now(),{headers});
+  if(current.status===401||current.status===403){localStorage.removeItem(GITHUB_TOKEN_KEY);throw new Error('token')}
+  if(!current.ok)throw new Error('read-'+current.status);
+  const info=await current.json();
+  const response=await fetch(api,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'Cập nhật cấu hình từ trang admin',content:encodeBase64Unicode(configContent(snapshot)),sha:info.sha})});
+  if(response.status===401||response.status===403){localStorage.removeItem(GITHUB_TOKEN_KEY);throw new Error('token')}
+  if(!response.ok){const detail=await response.text();console.error(detail);throw new Error('write-'+response.status)}
+}
+$('#saveBtn').onclick=async()=>{
   if(!commitForm())return;
+  const btn=$('#saveBtn'),old=btn.textContent;btn.disabled=true;btn.textContent='Đang lưu...';
   try{
     const snapshot=normalizeSnapshot(cfg);
+    await savePublicConfig(snapshot);
     localStorage.setItem(CONFIG_STORAGE_KEY,JSON.stringify(snapshot));
     cfg=snapshot;renderPages();renderSite();
-    const unlockCount=cfg.pages.reduce((n,p)=>n+p.unlocks.length,0);
-    toast(`Đã lưu toàn bộ: ${cfg.pages.length} trang, ${cfg.common.tasks.length} nhiệm vụ, ${unlockCount} link`);
-  }catch{toast('Cấu hình không hợp lệ, chưa lưu')}
+    toast('Đã lưu công khai, mọi người sẽ thấy sau khi GitHub deploy');
+  }catch(err){
+    if(err.message==='missing-token')toast('Chưa nhập GitHub Token');
+    else if(err.message==='token')toast('Token sai hoặc chưa có quyền ghi repo');
+    else toast('Lưu thất bại, kiểm tra Token và mạng');
+  }finally{btn.disabled=false;btn.textContent=old}
 };
-$('#exportBtn').onclick=()=>{
-  if(!commitForm())return;
-  try{
-    const snapshot=normalizeSnapshot(cfg);
-    localStorage.setItem(CONFIG_STORAGE_KEY,JSON.stringify(snapshot));
-    cfg=snapshot;
-    downloadText('config.js',configContent(snapshot));
-    toast('Đã xuất config.js');
-  }catch{toast('Không thể xuất cấu hình')}
-};
-$('#importBtn').onclick=()=>$('#fileInput').click();
-$('#viewSite').onclick=()=>{if(!commitForm())return;const p=cfg.pages.find(x=>x.id===activePageId);location.href=location.pathname+'?page='+encodeURIComponent(p.slug)};
+$('#viewSite').onclick=()=>{if(!commitForm())return;const p=cfg.pages.find(x=>x.id===activePageId);const parts=location.pathname.split('/').filter(Boolean);const ai=parts.indexOf('admin');const base=ai>0?'/'+parts[0]+'/':'/';location.href=base+'?page='+encodeURIComponent(p.slug)};
 $('#logoutBtn').onclick=()=>{sessionStorage.removeItem('getkey_admin_auth');location.reload()};
-$('#fileInput').onchange=async e=>{try{const file=e.target.files[0];if(!file)return;const x=normalizeSnapshot(parseConfigText(await file.text()));cfg=x;activePageId=cfg.pages[0]?.id||'';renderAdmin();renderSite();toast('Đã nhập cấu hình, kiểm tra rồi bấm Lưu')}catch{toast('File config.js hoặc JSON không hợp lệ')}finally{e.target.value=''}};
 $('#resetConfig').onclick=()=>{if(confirm('Khôi phục mặc định?')){cfg=clone(DEFAULT);activePageId=cfg.pages[0].id;localStorage.removeItem(CONFIG_STORAGE_KEY);renderAdmin();renderSite();toast('Đã khôi phục mặc định')}};
 window.addEventListener('resize',fitTitle);renderSite();showAdmin();setInterval(()=>{clock();if(cfg.common.autoTheme)applyTheme()},1000);
 </script></body></html>
