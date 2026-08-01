@@ -28,7 +28,7 @@ window.GETKEY_CONFIG = {
       {
         "id": "zalo",
         "title": "Tham Gia Nhóm Zalo",
-        "icon": "https://cdn.simpleicons.org/zalo/ffffff",
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg",
         "bg": "#0a68ff",
         "url": "https://zalo.me/g/k2kzhxhhdeluhkqsbxub"
       },
