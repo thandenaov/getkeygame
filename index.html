@@ -155,13 +155,48 @@ function renderAdmin(){const c=cfg.common,p=cfg.pages.find(x=>x.id===activePageI
 function renderTasks(){$('#a_tasks').innerHTML=cfg.common.tasks.map((t,i)=>`<div class="item" draggable="true" data-type="tasks" data-index="${i}"><div class="drag">☰</div><div class="row"><input class="mini" data-k="title" value="${esc(t.title)}"><input class="mini" data-k="url" value="${esc(t.url)}"><input class="mini" data-k="icon" value="${esc(t.icon)}"><input class="mini color" data-k="bg" type="color" value="${esc(t.bg||'#555555')}"><button class="remove">Xoá</button></div></div>`).join('')||'<div class="note">Chưa có nhiệm vụ</div>'}
 function renderSimple(type){const arr=type==='unlocks'?(cfg.pages.find(x=>x.id===activePageId)?.unlocks||[]):cfg.common.guides;$('#a_'+type).innerHTML=arr.map((x,i)=>type==='unlocks'?`<div class="item" draggable="true" data-type="${type}" data-index="${i}"><div class="drag">☰</div><div class="row unlock-admin"><input class="mini" data-k="title" placeholder="Tên nút" value="${esc(x.title)}"><input class="mini" data-k="url" placeholder="Link đích" value="${esc(x.url)}"><input class="mini" data-k="icon" placeholder="URL logo hoặc tải ảnh" value="${esc(x.icon||'')}"><button class="upload-mini unlock-upload" type="button">Tải ảnh</button><input class="unlock-file" type="file" accept="image/*" hidden><button class="remove">Xoá</button></div></div>`:`<div class="item" draggable="true" data-type="${type}" data-index="${i}"><div class="drag">☰</div><div class="row simple"><input class="mini" data-k="title" placeholder="Tên hướng dẫn" value="${esc(x.title)}"><input class="mini" data-k="url" placeholder="Link hướng dẫn" value="${esc(x.url)}"><button class="remove">Xoá</button></div></div>`).join('')||'<div class="note">Chưa có mục nào</div>'}
 function getArr(type){if(type==='tasks')return cfg.common.tasks;if(type==='guides')return cfg.common.guides;return cfg.pages.find(x=>x.id===activePageId).unlocks}
-document.addEventListener('input',e=>{const item=e.target.closest('.item');if(item&&e.target.dataset.k)getArr(item.dataset.type)[+item.dataset.index][e.target.dataset.k]=e.target.value});
+document.addEventListener('input',e=>{
+  const item=e.target.closest('.item');
+  if(item&&e.target.dataset.k){
+    const arr=getArr(item.dataset.type), row=arr?.[+item.dataset.index];
+    if(row)row[e.target.dataset.k]=e.target.value;
+    return;
+  }
+  const p=cfg.pages.find(x=>x.id===activePageId),c=cfg.common;
+  if(!p||!c)return;
+  const pageMap={p_name:'name',p_slug:'slug',p_title:'title',p_browserTitle:'browserTitle',p_logo:'logo'};
+  const commonMap={a_taskHeading:'taskHeading',a_unlockHeading:'unlockHeading',a_guideHeading:'guideHeading',a_accent:'accent',a_accent2:'accent2',a_lightHour:'lightHour',a_darkHour:'darkHour'};
+  if(pageMap[e.target.id])p[pageMap[e.target.id]]=e.target.value;
+  if(commonMap[e.target.id])c[commonMap[e.target.id]]=e.target.value;
+});
+document.addEventListener('change',e=>{
+  if(e.target.id==='a_showClock')cfg.common.showClock=e.target.checked;
+  if(e.target.id==='a_autoTheme')cfg.common.autoTheme=e.target.checked;
+});
 document.addEventListener('click',e=>{const pi=e.target.closest('.page-item');if(e.target.matches('.select-page')){if(!commitForm())return;activePageId=pi.dataset.page;renderAdmin()}if(e.target.matches('.clone-page')){if(!commitForm())return;const src=cfg.pages.find(p=>p.id===pi.dataset.page),n=clone(src);n.id='p'+Date.now();n.name+=' (bản sao)';n.slug=(n.slug+'-copy').replace(/[^a-z0-9-]/gi,'-').toLowerCase();cfg.pages.push(n);activePageId=n.id;renderAdmin()}if(e.target.matches('.delete-page')){if(!commitForm())return;if(cfg.pages.length===1)return toast('Phải giữ ít nhất 1 trang');if(confirm('Xoá trang này?')){cfg.pages=cfg.pages.filter(p=>p.id!==pi.dataset.page);activePageId=cfg.pages[0].id;renderAdmin()}}if(e.target.matches('.remove')){const item=e.target.closest('.item'),arr=getArr(item.dataset.type);arr.splice(+item.dataset.index,1);item.dataset.type==='tasks'?renderTasks():renderSimple(item.dataset.type)}if(e.target.dataset.add==='task'){cfg.common.tasks.push({id:'task_'+Date.now(),title:'Nhiệm vụ mới',url:'#',icon:'',bg:'#5577ff'});renderTasks()}if(e.target.dataset.add==='unlock'){getArr('unlocks').push({title:'Link mới',url:'#',icon:''});renderSimple('unlocks')}if(e.target.dataset.add==='guide'){cfg.common.guides.push({title:'Hướng dẫn mới',url:'#'});renderSimple('guides')}});
 document.addEventListener('click',e=>{if(e.target.matches('.unlock-upload'))e.target.parentElement.querySelector('.unlock-file').click()});
 document.addEventListener('change',e=>{if(!e.target.matches('.unlock-file'))return;const f=e.target.files[0];if(!f)return;if(f.size>1200000)return toast('Ảnh nên nhỏ hơn 1,2 MB');const item=e.target.closest('.item'),arr=getArr('unlocks'),row=arr?.[+item.dataset.index],input=item.querySelector('[data-k="icon"]');const r=new FileReader();r.onload=()=>{if(row)row.icon=r.result;if(input)input.value=r.result;toast('Đã thêm logo cho nút mở khoá')};r.readAsDataURL(f)});
 $('#addPage').onclick=()=>{if(!commitForm())return;const n={id:'p'+Date.now(),name:'Trang mới',slug:'trang-'+Date.now(),title:'Get Key',browserTitle:'Get Key',logo:cfg.pages[0]?.logo||'',unlocks:[{title:'Mở khoá Link Chính',url:'#',icon:''}]};cfg.pages.push(n);activePageId=n.id;renderAdmin()};
 $('#logoUploadBtn').onclick=()=>$('#logoFile').click();$('#logoFile').onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>1200000)return toast('Ảnh nên nhỏ hơn 1,2 MB');const r=new FileReader();r.onload=()=>{$('#p_logo').value=r.result;const p=cfg.pages.find(x=>x.id===activePageId);if(p)p.logo=r.result;toast('Đã chọn logo')};r.readAsDataURL(f)};
-$('#saveBtn').onclick=()=>{if(!commitForm())return;const content='window.GETKEY_CONFIG = '+JSON.stringify(cfg,null,2)+';\n';const b=new Blob([content],{type:'application/javascript;charset=utf-8'}),a=document.createElement('a');const url=URL.createObjectURL(b);a.href=url;a.download='config.js';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);renderPages();renderSite();toast('Đã lưu toàn bộ trang, nhiệm vụ và link vào config.js')};
+$('#saveBtn').onclick=()=>{
+  if(!commitForm())return;
+  const snapshot=clone(cfg);
+  if(!snapshot.common||!Array.isArray(snapshot.pages)||!snapshot.pages.length)return toast('Cấu hình không hợp lệ');
+  for(const page of snapshot.pages){
+    if(!Array.isArray(page.unlocks))page.unlocks=[];
+  }
+  if(!Array.isArray(snapshot.common.tasks))snapshot.common.tasks=[];
+  if(!Array.isArray(snapshot.common.guides))snapshot.common.guides=[];
+  const json=JSON.stringify(snapshot,null,2);
+  try{JSON.parse(json)}catch{return toast('Không thể đóng gói cấu hình')}
+  const content='window.GETKEY_CONFIG = '+json+';\n';
+  const b=new Blob([content],{type:'application/javascript;charset=utf-8'}),a=document.createElement('a');
+  const url=URL.createObjectURL(b);a.href=url;a.download='config.js';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+  cfg=snapshot;renderPages();renderSite();
+  const unlockCount=cfg.pages.reduce((n,p)=>n+(p.unlocks?.length||0),0);
+  toast(`Đã lưu ${cfg.pages.length} trang, ${cfg.common.tasks.length} nhiệm vụ, ${unlockCount} link`)
+};
 $('#viewSite').onclick=()=>{if(!commitForm())return;const p=cfg.pages.find(x=>x.id===activePageId);location.href=location.pathname+'?page='+encodeURIComponent(p.slug)};$('#logoutBtn').onclick=()=>{sessionStorage.removeItem('getkey_admin_auth');location.reload()};$('#exportBtn').onclick=()=>{if(!commitForm())return;const b=new Blob([JSON.stringify(cfg,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='getkey-multi-config.json';a.click();URL.revokeObjectURL(a.href)};$('#importBtn').onclick=()=>$('#fileInput').click();$('#fileInput').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());if(!x.common||!Array.isArray(x.pages))throw 0;cfg=x;activePageId=cfg.pages[0]?.id||'';renderAdmin();toast('Đã nhập, bấm Lưu')}catch{toast('File JSON không hợp lệ')}};$('#resetConfig').onclick=()=>{if(confirm('Khôi phục mặc định?')){cfg=clone(DEFAULT);activePageId=cfg.pages[0].id;renderAdmin();renderSite();toast('Đã khôi phục tạm thời')}};
 renderSite();showAdmin();setInterval(()=>{clock();if(cfg.common.autoTheme)applyTheme()},1000);
 </script></body></html>
