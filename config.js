@@ -22,7 +22,7 @@ window.GETKEY_CONFIG = {
         "id": "tiktok",
         "title": "Tham Gia Kênh Tele",
         "icon": "https://upload.wikimedia.org/wikipedia/commons/8/83/Telegram_2019_Logo.svg",
-        "bg": "#ffffff",
+        "bg": "#00a1d8",
         "url": "https://telegram.me/modmapfree"
       },
       {
