@@ -2,7 +2,7 @@ window.GETKEY_CONFIG = {
   "common": {
     "adminPassword": "minhwuan",
     "taskHeading": "Nhiệm Vụ",
-    "unlockHeading": "Mở Khoá Key",
+    "unlockHeading": "Get Key",
     "guideHeading": "Hoàn Thành Nhiệm Vụ Để Mở Khoá Key",
     "accent": "#168ee8",
     "accent2": "#5577ff",
